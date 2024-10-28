@@ -1,0 +1,37 @@
+library("Seurat")
+rds<-readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/hanrui/At/STO_embryo_scRNA/earlyEmbryo/Zygote_Embryo_Suspensor/cluster/Zygote_Embryo_Suspensor_cluster_scRNA.rds")
+rds@meta.data$seurat_clusters_renamed<-gsub("2_28h_Zygote,Basal_cell","1",rds@meta.data$seurat_clusters_renamed)
+rds@meta.data$seurat_clusters_renamed<-gsub("2_28h_Embryo","2",rds@meta.data$seurat_clusters_renamed)
+rds@meta.data$seurat_clusters_renamed<-gsub("3_48h_Embryo","3",rds@meta.data$seurat_clusters_renamed)
+rds@meta.data$seurat_clusters_renamed<-gsub("3_48h_Suspensor","4",rds@meta.data$seurat_clusters_renamed)
+rds@meta.data$seurat_clusters_renamed<-gsub("4_globular_Embryo","5",rds@meta.data$seurat_clusters_renamed)
+rds@meta.data$seurat_clusters_renamed<-gsub("4_globular_Suspensor","6",rds@meta.data$seurat_clusters_renamed)
+Idents(rds) <- "seurat_clusters_renamed"
+DEG_wilcox <- FindAllMarkers(rds, only.pos = TRUE, min.pct = 0.1, logfc.threshold = 1.5, test.use = "wilcox")
+geneID<-DEG_wilcox$gene
+DEG_out<-cbind(geneID,DEG_wilcox)
+#DEG_out<-DEG_wilcox
+#DEG_out$cluster<-gsub("2_28h_Zygote,Basal_cell","2_28h_Zygote.Basal_cell",DEG_out$cluster)
+DEG_out$cluster<-gsub("_", "-", DEG_out$cluster)
+write.table(DEG_out, file="earlyEmbryo_Zygote_allMarkers.txt", quote = F, sep = "\t" , row.names=F,col.names = T)
+
+matrix_count<-as.data.frame(rds@assays$RNA@counts)
+#matrix_count<-gsub("_", "-", matrix_count)
+colnames(matrix_count)<-gsub("_", "-", colnames(matrix_count))
+colnames(matrix_count)<-gsub(":", "-", colnames(matrix_count))
+rownames(matrix_count)<-gsub("_", "-", rownames(matrix_count))
+write.table(matrix_count,file="earlyEmbryo_Zygote_matrix.txt",quote = F, sep = "\t" , col.names = T,row.names=T)
+
+cell2cluster<-(rds@meta.data$seurat_clusters_renamed)
+cell<-rownames(rds@meta.data)
+cell_cluster_out<-cbind(cell,cell2cluster)
+#cell_cluster_out$cell2cluster<-gsub("2_28h_Zygote,Basal_cell","2_28h_Zygote.Basal_cell",cell_cluster_out$cell2cluster)
+cell_cluster_out<-gsub("_", "-", cell_cluster_out)
+cell_cluster_out<-gsub(":", "-", cell_cluster_out)
+write.table(cell_cluster_out,file="earlyEmbryo_Zygote_cells2clusters.txt",quote = F, sep = "\t" , col.names = F,row.names=F)
+
+cell_ident<-unique(rds@meta.data$seurat_clusters_renamed)
+cell_out<-cbind(cell_ident,cell_ident)
+#cell_out<-gsub("2_28h_Zygote,Basal_cell","2_28h_Zygote.Basal_cell",cell_out)
+cell_out<-gsub("_", "-", cell_out)
+write.table(cell_out,file="earlyEmbryo_Zygote_identities.txt",quote = F, sep = "\t" , col.names = F,row.names=F)
