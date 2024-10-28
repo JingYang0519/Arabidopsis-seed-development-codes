@@ -1,0 +1,9 @@
+01.9-11h	/jdfsbjcas1/ST_BJ/P21Z28400N0234/gongyue/scRNA/embryo_9-11h/Merge_lib/embryo_9-11h_scRNA_allChr.rds
+02.28h	/jdfsbjcas1/ST_BJ/P21Z28400N0234/hanrui/At/STO_embryo_scRNA/embryo_28h_cutoff500/Merge_lib/embryo_28h_scRNA_allChr.rds
+03.48h	/jdfsbjcas1/ST_BJ/P21Z28400N0234/hanrui/At/STO_embryo_scRNA/embryo_48h_cutoff500/test/Merge_lib/embryo_48h_scRNA_allChr.rds
+04.globular	/jdfsbjcas1/ST_BJ/P21Z28400N0234/hanrui/At/STO_embryo_scRNA/embryo_72h_cutoff500/Merge_lib/embryo_72h_scRNA_allChr.rds
+05.heart	/jdfsbjcas1/ST_BJ/P21Z28400N0234/gexiulan/Cell/heart/result/filterDEG/heart_scRNA_allChr.rds
+06.torpedo	/jdfsbjcas1/ST_BJ/P21Z28400N0234/gexiulan/Cell/torpedo/result/filterDEG/torpedo_scRNA_allChr.rds
+07.bent	/jdfsbjcas1/ST_BJ/P21Z28400N0234/gexiulan/Cell/walking_stick/result/filterDEG/walking_stick_scRNA_allChr.rds
+08.cotyledon	/jdfsbjcas1/ST_BJ/P21Z28400N0234/gongyue/scRNA/cotyledon/Merge_lib/cotyledon_scRNA_allChr.rds
+09.late_cotyledon	/jdfsbjcas1/ST_BJ/P21Z28400N0234/gongyue/scRNA/late-cotyledon/Merge_lib/late-cotyledon_scRNA_allChr.rds
