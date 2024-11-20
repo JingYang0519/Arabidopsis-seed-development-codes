@@ -5,7 +5,7 @@ library(Seurat)
 library(ggsci)
 library(ggpubr)
 
-rds <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/yangjing7/01.Proj/202402.endosperm_dev/refined_anno0514.Endo_Cells_recluster.stage2-8.rm36LowQualityCells.rds")
+rds <- readRDS("refined_anno0514.Endo_Cells_recluster.stage2-8.rm36LowQualityCells.rds")
 rds
 
 rds@active.ident <- factor(rds@meta.data$seurat_clusters_renamed)
