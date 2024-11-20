@@ -1,5 +1,5 @@
 library("Seurat")
-rds<-readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/hanrui/At/STO_embryo_scRNA/earlyEmbryo/Zygote_Embryo_Suspensor/cluster/Zygote_Embryo_Suspensor_cluster_scRNA.rds")
+rds<-readRDS("Zygote_Embryo_Suspensor_cluster_scRNA.rds")
 rds@meta.data$seurat_clusters_renamed<-gsub("2_28h_Zygote,Basal_cell","1",rds@meta.data$seurat_clusters_renamed)
 rds@meta.data$seurat_clusters_renamed<-gsub("2_28h_Embryo","2",rds@meta.data$seurat_clusters_renamed)
 rds@meta.data$seurat_clusters_renamed<-gsub("3_48h_Embryo","3",rds@meta.data$seurat_clusters_renamed)
