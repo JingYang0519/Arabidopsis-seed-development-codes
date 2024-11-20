@@ -2,10 +2,9 @@ library(Seurat)
 library(ComplexHeatmap)
 library(circlize)
 library(pheatmap)
-rds <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenruiying/01.Programs/2023_Embryo/01.Scripts/04.ZY/CellClass.rds")#读取单细胞RDS
+rds <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenruiying/01.Programs/2023_Embryo/01.Scripts/04.ZY/CellClass.rds")
 rds1 <- rds
 
-#把rds以stage分组
 rds1$CellClass <- gsub("^02_24h_.*","02_24h",rds1$CellClass)
 rds1$CellClass <- gsub("^03_28h_.*","03_28h",rds1$CellClass)
 rds1$CellClass <- gsub("^04_48h_.*","04_48h",rds1$CellClass)
@@ -16,10 +15,10 @@ rds1$CellClass <- gsub("^08.*","08_bent",rds1$CellClass)
 rds1$CellClass <- gsub("^09.*","09_cotyledon",rds1$CellClass)
 rds1$CellClass <- gsub("^10.*","10_late_cotyledon",rds1$CellClass)
 
-DEG <- read.table("/jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/SCRNA_cor/bulk_Whole_Seed_cor/sc_DEG_wilcox_WS.tsv", header = T)#读取单细胞DEG
+DEG <- read.table("/jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/SCRNA_cor/bulk_Whole_Seed_cor/sc_DEG_wilcox_WS.tsv", header = T)
 DEG.list <- DEG$gene # head(DEG.list)
 bulk <- read.table("/jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/SCRNA_cor/bulk_Whole_Seed_cor/bulk_whole_seed_mean.tsv", header = T)
-subset_bulk <- subset(bulk, select = c("gene","preglobular","heart","linear_cotyledon","mature_green"))#提取bulk每个时期的列（两个重复取平均值后）
+subset_bulk <- subset(bulk, select = c("gene","preglobular","heart","linear_cotyledon","mature_green"))
 row.names(subset_bulk) <- subset_bulk$gene
 inter <- intersect(row.names(subset_bulk),DEG.list) # Intersection gene list of bulk genelist and scDEGs
 
@@ -35,9 +34,9 @@ colnames(corr) <- gsub("^[^_]*_", "", colnames(corr))
 f1 <- colorRamp2(breaks = c(min(corr),0,0.8,max(corr)),c("#74ADD1","#FFFFBF","burlywood1","#D73027"))
 corr <- corr[,c("24h","28h","48h","globular","heart","torpedo","bent","cotyledon","late_cotyledon")]
 # matrix.corr <- matrix(corr)
-#pheatmap画法
+#pheatmap
 s2 <- pheatmap(corr, border_color = "black",
-               color = f1,#会报错，需要debug
+               color = f1,
                cluster_row = FALSE,
                cluster_cols = FALSE)
 
@@ -46,7 +45,7 @@ print(s2)
 dev.off()
 
 
-#Heatmap画法
+#Heatmap
 s2 <- Heatmap(as.matrix(corr), name = "spearman corr", 
               column_title = " ",row_title = " ",
               col = f1,
