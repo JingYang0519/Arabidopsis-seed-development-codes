@@ -6,7 +6,7 @@ library(gplots)
 library(viridis)
 library(Seurat)
 
-celltrajectory <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/yangjing7/01.Proj/202404.Cell_Trajectory/endo0514/refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
+celltrajectory <- readRDS("refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
 
 time_point <- unique(celltrajectory$Organ)
 time_point
