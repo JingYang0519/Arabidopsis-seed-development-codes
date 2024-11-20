@@ -200,11 +200,8 @@ ha_column2 = HeatmapAnnotation(df = data.frame(TimePoints = c(rep("1.9-11h", 13)
   pdf("02.Metaprogram.rm24h.v3/01.program_spearman_cor.heatmap.pdf",14,10)
   print(h2)
   dev.off()
-  
-  
-  
-  #保存画图数据
+
   write.table(all.score.rm.df.cor,file = paste("02.Metaprogram.rm24h.v3/01.cor_heatmap_data.txt",sep = ""),quote = F,sep = "\t",row.names = T,col.names = T)
-  #保存program和(最相关)gene的对应关系
+
   all.score.topn.rm.df=all.score.topn.df[,setdiff(colnames(all.score.topn.df),maybe.bg)] # Filter background noise
   write.table(all.score.topn.rm.df,file = paste("02.Metaprogram.rm24h.v3/01.program_top",top_gene.num,"gene.txt",sep = ""),quote = F,sep = "\t",row.names = F,col.names = T)
