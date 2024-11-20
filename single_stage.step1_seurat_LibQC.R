@@ -1,7 +1,7 @@
 #!/usr/bin/Rscript
 args=commandArgs(T)
 
-#.libPaths("/ldfssz1/ST_OCEAN/USER/wangyue/lib/R-4.0.3/lib64/R/library")
+#.libPaths("./R/library")
 
 ### Seurat clustering
 library(Seurat)
@@ -19,7 +19,7 @@ plan()
 options(future.globals.maxSize= 429496729600)
 
 SampleID <- args[2] #R1087_Root_AT_0316
-path <- args[3] #/jdfssz1/ST_BIGDATA/P21Z27100N0056/BJ_tmp/Project/9.PCA/1.Arabidopsis/1.scRNA/1.preprocess/
+path <- args[3] 
 minUMIs <- as.numeric(args[4]) #1000
 minGenes <- as.numeric(args[5]) #500
 maxPercent.mt <- as.numeric(args[6]) #4
@@ -33,7 +33,7 @@ colnames(count) <- paste(SampleID,colnames(count),sep=":")
 
 ### 2. clustering
 dir.create(args[11], recursive = TRUE)
-setwd(args[11]) #/jdfssz1/ST_BIGDATA/P21Z27100N0056/BJ_tmp/Project/9.PCA/1.Arabidopsis/1.scRNA/2.clustering/1.Result/Root/1.LibQC
+setwd(args[11]) 
 dir.create(SampleID, recursive = TRUE)
 setwd(SampleID)
 ### Creat Seurat object
