@@ -71,7 +71,7 @@ if (length(file_list) > 1){
 ### input nReads_stat
 nReads_stat <- list()
 for(i in unique(scRNA@meta.data$Batch)){
-#				nReads_stat[[i]] <- as.data.frame(fread(paste0("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenxi1/At/STO_embryo_scRNA/embryo_72h/",i,"/merge_cell.stat")),header=T,sep="\t")
+#				nReads_stat[[i]] <- as.data.frame(fread(paste0("scRNA/embryo_72h/",i,"/merge_cell.stat")),header=T,sep="\t")
 	nReads_stat[[i]] <- as.data.frame(fread(paste0(InDir,"/",i,"/merge_cell.stat")),header=T,sep="\t")
 	nReads_stat[[i]]$Cell <- paste(i,nReads_stat[[i]]$Cell,sep=":")
 }
