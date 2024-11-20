@@ -5,7 +5,7 @@ library(dplyr)
 
 key_genes <- read.table("cellTrajectory.gene_expPlot.txt", header = TRUE, stringsAsFactors = FALSE, sep = "\t")
 
-celltrajectory <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/yangjing7/01.Proj/202404.Cell_Trajectory/endo0514/refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
+celltrajectory <- readRDS("refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
 celltrajectory@meta.data$celltype0515<-gsub("Endo_CZE","CZE",celltrajectory@meta.data$celltype0515)
 
 rds <- subset(celltrajectory, celltype0515 != "Sp")
