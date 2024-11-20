@@ -39,7 +39,7 @@ library(dendsort)
 
 ### 0. RDS data ---------------------------------------------------------
 
-rds <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/hanrui/At/STO_embryo_scRNA/all_time_merge/allChr_v1/rmR1802/all_sample_subCluster_CellType/At_merge.seurat_clusters_renamed.rds")
+rds <- readRDS("At_merge.seurat_clusters_renamed.rds")
 # sub_rds <- subset(rds, Organ == args[1])
 sub_rds <- subset(rds, Organ == "1_9_11h")
 sub_rds$seurat_clusters_renamed <- gsub("Reproductive_cell_1_","",sub_rds$seurat_clusters_renamed)
@@ -66,14 +66,14 @@ data <- as.matrix(data)
 # data <- as.matrix(sub_rds2@assays$SCT@data)
 
 ### 1. Statistics -------------------------------------------------------
-LRp.cmb <- read.delim("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenruiying/01.Programs/2023_Embryo/01.Scripts/03.CellComm/02.Results/LRp_CellType.revised/LRp.cmb.p0.05.3154.revised.tsv", header = T)
+LRp.cmb <- read.delim("LRp_CellType.revised/LRp.cmb.p0.05.3154.revised.tsv", header = T)
 head(LRp.cmb)
 
 ### Anno by database
 # goannot <- select(org.At.tair.db, keys=keys(org.At.tair.db), columns="ARACYC")
 # head(goannot)
 # gs <- split(goannot$TAIR, goannot$ARACYC)
-goannot <- read.delim("/jdfsbjcas1/ST_BJ/P21Z28400N0234/hanrui/script/02.Araport11.Mar92021.geneid_GO_annotation.xls", header = T)
+goannot <- read.delim("02.Araport11.Mar92021.geneid_GO_annotation.xls", header = T)
 gs <- split(goannot$GeneID, goannot$Description)
 
 ### Test on 9-11h cells
