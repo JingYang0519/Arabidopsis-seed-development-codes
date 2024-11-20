@@ -2,12 +2,11 @@ library(Seurat)
 library(Matrix)
 library(dplyr)
 
-rds <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/yangjing7/01.Proj/202403.CellFlow/stage2-9.rm36LowQualityCells.VeryDetaiAnno.rds")
+rds <- readRDS("stage2-9.rm36LowQualityCells.VeryDetaiAnno.rds")
 
 rds <- subset(rds, Organ != "9_late_cotyledon" & CellType == "Endosperm")
 rds
 
-# 重新计算高变等
 rds <- NormalizeData(rds, verbose = FALSE)
 rds <- FindVariableFeatures(rds, selection.method = "vst", nfeatures = 1500, verbose = FALSE)
 rds <- ScaleData(rds)
