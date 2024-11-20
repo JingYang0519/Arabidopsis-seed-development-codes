@@ -2,10 +2,10 @@ library(Seurat)
 library(ComplexHeatmap)
 library(circlize)
 library(pheatmap)
-rds <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenruiying/01.Programs/2023_Embryo/01.Scripts/04.ZY/CellClass.rds")#读取单细胞RDS
+rds <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenruiying/01.Programs/2023_Embryo/01.Scripts/04.ZY/CellClass.rds")
 rds1 <- rds
-rds1$CellClass <- gsub("03_28h_Zygote","03_28h_Embryo",rds1$CellClass)#将28h的Zygote改为Embryo，即合并数据
-DEG <- read.table("/jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/SCRNA_cor/bulk_cor/DEG_cor/DEG_wilcox_Embryo_Zygote.tsv", header = T)#读取单细胞DEG
+rds1$CellClass <- gsub("03_28h_Zygote","03_28h_Embryo",rds1$CellClass)
+DEG <- read.table("/jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/SCRNA_cor/bulk_cor/DEG_cor/DEG_wilcox_Embryo_Zygote.tsv", header = T)
 DEG$cluster <- gsub("03_28h_Zygote","03_28h_Embryo",DEG$cluster)
 DEG.list <- DEG$gene # head(DEG.list)
 bulk <- read.table("/jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/SCRNA_cor/bulk_cor/Bulk_counts_mean.txt", header = T)
@@ -34,7 +34,7 @@ s2 <- Heatmap(as.matrix(corr), name = "spearman corr",
                 column_dend_side = "top",column_title_rot = 0,
                 column_title_side = "top",
                 column_names_rot = 45)
-#pheatmap画法
+#pheatmap
 s2 <- pheatmap(corr, border_color = "black",
                color = f1,
                cluster_row = FALSE,
