@@ -1,9 +1,0 @@
-01.9-11h	Merge_lib/embryo_9-11h_scRNA_allChr.rds
-02.28h	Merge_lib/embryo_28h_scRNA_allChr.rds
-03.48h	Merge_lib/embryo_48h_scRNA_allChr.rds
-04.globular	Merge_lib/embryo_72h_scRNA_allChr.rds
-05.heart	Merge_lib/heart_scRNA_allChr.rds
-06.torpedo	Merge_lib/torpedo_scRNA_allChr.rds
-07.bent	Merge_lib/walking_stick_scRNA_allChr.rds
-08.cotyledon	Merge_lib/cotyledon_scRNA_allChr.rds
-09.late_cotyledon	Merge_lib/late-cotyledon_scRNA_allChr.rds
