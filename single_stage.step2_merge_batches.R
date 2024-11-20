@@ -1,7 +1,7 @@
 #!/usr/bin/Rscript
 args=commandArgs(T)
 
-#.libPaths("/ldfssz1/ST_OCEAN/USER/wangyue/lib/R-4.0.3/lib64/R/library")
+#.libPaths("./R/library")
 
 ### Seurat clustering
 library(Seurat)
@@ -34,7 +34,7 @@ LibQC<-args[12]
 OutDir<-args[13]
 InDir<-args[14]
 ### 1. load data
-#setwd("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenxi1/At/STO_embryo_scRNA/embryo_72h/LibQC")
+
 setwd(LibQC)
 file_list = list.files(pattern = "count_mat_FilterDoublet.txt",recursive=T,full.name=T) ## select Sample
 cat(Organ,"has",length(file_list),"samples.\n")
@@ -56,8 +56,6 @@ if (length(file_list) > 1){
   cat(Organ,"raw count matrix:",dim(counts),"\n")
 
   ### 2. clustering
-#  dir.create("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenxi1/At/STO_embryo_scRNA/embryo_72h/Merge_lib", recursive = TRUE)
-#  setwd("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenxi1/At/STO_embryo_scRNA/embryo_72h/Merge_lib")
 	dir.create(OutDir, recursive = TRUE)
 	setwd(OutDir)
   ### Creat Seurat object
@@ -89,7 +87,7 @@ if(all(colnames(scRNA)==nReads_stat_merge$Cell)){
 }
  
  ### for Arabidopsis_thaliana
-geneinfo <- as.data.frame(fread("/jdfsbjcas1/ST_BJ/P21Z28400N0234/hanrui/script/Araport11.Mar92021.geneinfo_20220708.txt"),header=T,sep="\t")
+geneinfo <- as.data.frame(fread("Araport11.Mar92021.geneinfo_20220708.txt"),header=T,sep="\t")
 
 Mtgene <- as.vector(geneinfo[which(geneinfo$Chr=="ChrM"),"GeneID"])[which(as.vector(geneinfo[which(geneinfo$Chr=="ChrM"),"GeneID"]) %in% rownames(scRNA))]
 cat("Mitochondrial gene:", length(Mtgene),"\n", Mtgene,"\n")
