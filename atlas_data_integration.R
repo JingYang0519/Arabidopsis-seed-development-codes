@@ -105,7 +105,7 @@ if(all(colnames(scRNA)==nReads_stat_merge$Cell)){
 ############ merge all tissue ###############################
 
 ### for Arabidopsis_thaliana
-geneinfo <- as.data.frame(fread("/jdfsbjcas1/ST_BJ/P21Z28400N0234/hanrui/script/Araport11.Mar92021.geneinfo_20220708.txt"),header=T,sep="\t")
+geneinfo <- as.data.frame(fread("Araport11.Mar92021.geneinfo_20220708.txt"),header=T,sep="\t")
 
 Mtgene <- as.vector(geneinfo[which(geneinfo$Chr=="ChrM"),"GeneID"])[which(as.vector(geneinfo[which(geneinfo$Chr=="ChrM"),"GeneID"]) %in% rownames(scRNA))]
 cat("Mitochondrial gene:", length(Mtgene),"\n", Mtgene,"\n")
