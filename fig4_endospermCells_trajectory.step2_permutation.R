@@ -8,14 +8,14 @@ library(monocle3)
 library(FNN)
 source("Fig5_endospermCells_trajectory.help_code.R")
 
-work_path = "/jdfsbjcas1/ST_BJ/P21Z28400N0234/yangjing7/01.Proj/202404.Cell_Trajectory/endo0517"
-rds <-readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/yangjing7/01.Proj/202404.Cell_Trajectory/endo0514/refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
+work_path = "endo0517"
+rds <-readRDS("refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
 time_point <- unique(rds$Organ)
 time_point
 
 for(kk in 1:(length(time_point)-1)){
     #kk = as.numeric(1)
-    #rds <-readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/yangjing7/01.Proj/202404.Cell_Trajectory/endo0514/refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
+    #rds <-readRDS("refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
     time_i = time_point[kk]
     time_j = time_point[kk+1]
     print(time_i)
@@ -28,7 +28,7 @@ for(kk in 1:(length(time_point)-1)){
         print(XXX)
     }
 
-    # 读取并处理两个时间点的注释信息
+   
     anno1 = subset(rds, Organ == time_i)
     Idents(anno1) <- "celltype0515"
     anno1$Anno = as.vector(anno1$celltype0515)
@@ -37,12 +37,12 @@ for(kk in 1:(length(time_point)-1)){
     print(time_i)
     print(states_to_remove1)
     cells_to_keep1 <- WhichCells(anno1, idents = setdiff(unique(Idents(anno1)), states_to_remove1))
-    # 使用保留下来的细胞进行子集选择
+    # 
     anno1 <- subset(anno1, cells = cells_to_keep1)
-    # 添加元数据
+    # 
     anno1 <- AddMetaData(anno1, metadata = rep("pre", length(cells_to_keep1)), col.name = "day")
     anno1 <- AddMetaData(anno1, metadata = time_i, col.name = "stage")
-    # 读取并处理两个时间点的注释信息
+    # 
     anno2 = subset(rds, Organ == time_j)
     Idents(anno2) <- "celltype0515"
     anno2$Anno = as.vector(anno2$celltype0515)
@@ -51,16 +51,16 @@ for(kk in 1:(length(time_point)-1)){
     print(time_j)
     print(states_to_remove2)
     cells_to_keep2 <- WhichCells(anno2, idents = setdiff(unique(Idents(anno2)), states_to_remove2))
-    # 使用保留下来的细胞进行子集选择
+    #
     anno2 <- subset(anno2, cells = cells_to_keep2)
-    # 添加元数据
+    #
     anno2 <- AddMetaData(anno2, metadata = rep("pre", length(cells_to_keep2)), col.name = "day")
     anno2 <- AddMetaData(anno2, metadata = time_j, col.name = "stage")
 
-    # 合并两个时间点的注释信息
+    # 
     merge.data = merge(anno1, anno2)
 
-    # 读取并处理两个时间点的注释信息
+    # 
     anno1 = subset(merge.data , Organ == time_i)
     anno1$Anno = as.vector(anno1$celltype0515)
     anno1@meta.data$day <- "pre"
@@ -169,8 +169,8 @@ p<-ggplot(dat, aes(x=edge_weights_by_permutation)) +
     theme_classic(base_size = 15)
 p
 
-# 保存为PDF文件
+# 
 ggsave(filename = "Knn_umap_edge_weights_by_permutation.pdf", plot = p, width = 8, height = 6, units = "in")
 
-# 保存为PNG文件
+# 
 ggsave(filename = "Knn_umap_edge_weights_by_permutation.png", plot = p, width = 8, height = 6, units = "in")
