@@ -1,4 +1,4 @@
-# Rscript /jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/scRNA_plot/Pseudotime/2402/CytoTRACE.R /jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/RDS/9-11h.28h.Syn.Cen.End.correct.rds 10 FALSE /jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/scRNA_plot/Pseudotime/2402 9-11h_28h
+# Rscript 9-11h.28h.Syn.Cen.End.correct.rds 10 FALSE scRNA_plot/Pseudotime/2402 9-11h_28h
 
 
 
