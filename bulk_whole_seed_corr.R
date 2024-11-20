@@ -2,7 +2,7 @@ library(Seurat)
 library(ComplexHeatmap)
 library(circlize)
 library(pheatmap)
-rds <- readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/chenruiying/01.Programs/2023_Embryo/01.Scripts/04.ZY/CellClass.rds")
+rds <- readRDS("CellClass.rds")
 rds1 <- rds
 
 rds1$CellClass <- gsub("^02_24h_.*","02_24h",rds1$CellClass)
@@ -15,9 +15,9 @@ rds1$CellClass <- gsub("^08.*","08_bent",rds1$CellClass)
 rds1$CellClass <- gsub("^09.*","09_cotyledon",rds1$CellClass)
 rds1$CellClass <- gsub("^10.*","10_late_cotyledon",rds1$CellClass)
 
-DEG <- read.table("/jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/SCRNA_cor/bulk_Whole_Seed_cor/sc_DEG_wilcox_WS.tsv", header = T)
+DEG <- read.table("SCRNA_cor/bulk_Whole_Seed_cor/sc_DEG_wilcox_WS.tsv", header = T)
 DEG.list <- DEG$gene # head(DEG.list)
-bulk <- read.table("/jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/SCRNA_cor/bulk_Whole_Seed_cor/bulk_whole_seed_mean.tsv", header = T)
+bulk <- read.table("SCRNA_cor/bulk_Whole_Seed_cor/bulk_whole_seed_mean.tsv", header = T)
 subset_bulk <- subset(bulk, select = c("gene","preglobular","heart","linear_cotyledon","mature_green"))
 row.names(subset_bulk) <- subset_bulk$gene
 inter <- intersect(row.names(subset_bulk),DEG.list) # Intersection gene list of bulk genelist and scDEGs
@@ -40,7 +40,7 @@ s2 <- pheatmap(corr, border_color = "black",
                cluster_row = FALSE,
                cluster_cols = FALSE)
 
-pdf(paste0("/jdfsbjcas1/ST_BJ/P21Z28400N0234/zhangyi9/SCRNA_cor/bulk_Whole_Seed_cor/SC_bulk_WS_cor.pdf"),9,4)
+pdf(paste0("SCRNA_cor/bulk_Whole_Seed_cor/SC_bulk_WS_cor.pdf"),9,4)
 print(s2)
 dev.off()
 
