@@ -14,8 +14,8 @@ source("Fig5_endospermCells_trajectory.help_code.R")
 args = commandArgs(trailingOnly=TRUE)
 kk = as.numeric(args[1])
 
-work_path = "/jdfsbjcas1/ST_BJ/P21Z28400N0234/yangjing7/01.Proj/202404.Cell_Trajectory/endo0517"
-rds <-readRDS("/jdfsbjcas1/ST_BJ/P21Z28400N0234/yangjing7/01.Proj/202404.Cell_Trajectory/endo0514/refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
+work_path = "endo0517"
+rds <-readRDS("refined_anno0514.endosperm.stage1-9.for_celltrajectory.rds")
 
 
 time_point <- unique(rds$Organ)
