@@ -1,8 +1,8 @@
-#------------------------------------------------#
-#          Cell communication Analysis           #
-#     Editor: Ruiying Chen   TEL:18995624500     #
-#              Edited on: 2023.06.11             #
-#------------------------------------------------#
+#---------------------------------------------------------------#
+#                  Cell communication Analysis                  #
+#     Editor: Ruiying Chen   E-Mail:chenruiying@genomics.cn     #
+#                     Edited on: 2023.06.11                     #
+#---------------------------------------------------------------#
 
 # install.packages("/path/to/package.tar.gz", repos = NULL, type = "source")
 args=commandArgs(T)
