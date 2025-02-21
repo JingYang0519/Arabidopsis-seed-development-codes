@@ -1,8 +1,6 @@
 #!/usr/bin/Rscript
 args=commandArgs(T)
 
-#.libPaths("./R/library")
-
 ### Seurat clustering
 library(Seurat)
 library(dplyr)
@@ -18,11 +16,11 @@ plan("multiprocess", workers = as.numeric(args[1]))
 plan()
 options(future.globals.maxSize= 429496729600)
 
-SampleID <- args[2] #R1087_Root_AT_0316
-path <- args[3] 
+SampleID <- args[2] #R1845
+path <- args[3] #./Result
 minUMIs <- as.numeric(args[4]) #1000
 minGenes <- as.numeric(args[5]) #500
-maxPercent.mt <- as.numeric(args[6]) #4
+maxPercent.mt <- as.numeric(args[6]) #2
 maxPercent.C <- as.numeric(args[7]) #10
 dim.usage <- as.numeric(args[8]) #20
 res.usage <- as.numeric(args[9]) #0.5
@@ -58,12 +56,12 @@ if(all(colnames(scRNA)==nReads_stat$Cell)){
 ### for Arabidopsis_thaliana
 geneinfo <- as.data.frame(fread("Araport11.Mar92021.geneinfo_20220708.txt"),header=T,sep="\t")
 
-Mtgene <- as.vector(geneinfo[which(geneinfo$Chr=="ChrM"),"GeneID"])[which(as.vector(geneinfo[which(geneinfo$Chr=="ChrM"),"GeneID"]) %in% rownames(scRNA))]
-cat("Mitochondrial gene:", length(Mtgene),"\n", Mtgene,"\n")
-scRNA[["percent.mt"]] <- PercentageFeatureSet(scRNA, features = Mtgene) 
+Mtgene <- rownames(scRNA)[grep("^ATMG", rownames(scRNA))]
+cat("Mitochondrial gene:", length(Mtgene), "\n", Mtgene, "\n")
+scRNA[["percent.mt"]] <- PercentageFeatureSet(scRNA, features = Mtgene)
 
-Cgene <- as.vector(geneinfo[which(geneinfo$Chr=="ChrC"),"GeneID"])[which(as.vector(geneinfo[which(geneinfo$Chr=="ChrC"),"GeneID"]) %in% rownames(scRNA))]
-cat("Chloroplast gene:",length(Cgene),"\n", Cgene,"\n")
+Cgene <- rownames(scRNA)[grep("^ATCG", rownames(scRNA))]
+cat("Chloroplast gene:", length(Cgene), "\n", Cgene, "\n")
 scRNA[["percent.C"]] <- PercentageFeatureSet(scRNA, features = Cgene)
 
 ### Plot QC plot
